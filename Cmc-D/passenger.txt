@@ -1,0 +1,2 @@
+until.Passenger Record
+id | arrive time | exit time | stop at A | stop at B | stop at C | stop at D |
