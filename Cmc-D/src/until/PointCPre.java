@@ -4,22 +4,25 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Created by hongjiayong on 2017/1/20.
+ * Created by hongjiayong on 2017/1/22.
  */
-public class PointC extends Point {
+public class PointCPre extends Point{
     private FileWriter fileWriterWaiting;
     private FileWriter fileWriterPassing;
     private Passenger passenger;
     private Integer countPassenger;
-    public PointC(Integer name) throws IOException {
+
+    public PointCPre(Integer name) throws IOException{
         super(name);
 
-        fileWriterWaiting = new FileWriter(String.valueOf(name) + "_C_Waiting.txt");
-        fileWriterWaiting.write("C " + String.valueOf(name) + " Waiting Record\n");
+        countPassenger = 0;
+
+        fileWriterWaiting = new FileWriter(String.valueOf(name) + "_C_Pre_Waiting.txt");
+        fileWriterWaiting.write("C " + String.valueOf(name) + " Pre Waiting Record\n");
         fileWriterWaiting.flush();
 
-        fileWriterPassing = new FileWriter(String.valueOf(name) + "_C_Passing.txt");
-        fileWriterPassing.write("C " + String.valueOf(name) + " Passing Record\n");
+        fileWriterPassing = new FileWriter(String.valueOf(name) + "_C_Pre_Passing.txt");
+        fileWriterPassing.write("C " + String.valueOf(name) + " Pre Passing Record\n");
         fileWriterPassing.flush();
     }
 
@@ -27,7 +30,7 @@ public class PointC extends Point {
     public void action(Boolean flag, Integer time) throws IOException {
         if (passenger == null && getWaitingList().size() != 0){
             passenger = getWaitingList().poll();
-            passenger.setDoing((int) Math.round(Math.random() * 5 + 4));
+            passenger.setDoing((int) Math.round(Math.random() * 6 + 11));
         }
 
         if (passenger != null){

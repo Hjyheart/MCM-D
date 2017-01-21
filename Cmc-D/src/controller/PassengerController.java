@@ -14,15 +14,17 @@ public class PassengerController {
     private Integer passengerCounter;
     private Queue<Integer> dl;
     private FileWriter fileWriter;
+    private ArrayList<Integer> timeRep;
 
     public PassengerController(FileWriter fileWriter){
+        timeRep = new ArrayList<>();
         this.fileWriter = fileWriter;
         passengerCounter = 0;
         dl = new LinkedList<>();
         int count = 0;
         for (int i = 0; i < 75000; i++){
             // TODO: 泊松流
-            count += (int)(-1.152 * Math.log(Math.random()));
+            count += Math.round(-1.152 * Math.log(Math.random()));
             dl.add(count);
         }
     }
@@ -37,7 +39,6 @@ public class PassengerController {
 
     public ArrayList<Passenger> getPassenger(Integer time){
         ArrayList<Passenger> passengers = new ArrayList<>();
-//        System.out.println(time.compareTo(dl.peek()));
         while (!dl.isEmpty() && time.compareTo(dl.peek()) == 0){
             dl.poll();
             Passenger passenger;
@@ -51,6 +52,11 @@ public class PassengerController {
         }
 
         return passengers;
+    }
+
+    public Integer getTime(){
+        // TODO:随机摇一个值出来
+        return 1;
     }
 
 

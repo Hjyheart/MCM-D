@@ -34,8 +34,8 @@ public class PointB extends Point {
     public void action(Boolean flag, Integer time){
         if (passenger == null && getWaitingList().size() != 0){
             passenger = getWaitingList().poll();
-            // TODO:对时间取一个范围随机数
-            passenger.setDoing(20);
+
+            passenger.setDoing(getTime());
         }
 
         if (passenger != null){
@@ -51,12 +51,16 @@ public class PointB extends Point {
                 }else {
                     // to c
                     passenger.setStartC(time);
-                    if (Math.random() * 100 < 33){
-                        next1.getCs().get(0).add(passenger);
-                    }else if (Math.random() * 100 > 67){
-                        next1.getCs().get(1).add(passenger);
+                    if (!passenger.getPre()) {
+                        if (Math.random() * 100 < 33) {
+                            next1.getCs().get(0).add(passenger);
+                        } else if (Math.random() * 100 > 67) {
+                            next1.getCs().get(1).add(passenger);
+                        } else {
+                            next1.getCs().get(2).add(passenger);
+                        }
                     }else{
-                        next1.getCs().get(2).add(passenger);
+                        next1.getCbs().get(0).add(passenger);
                     }
                 }
                 passenger = null;
@@ -81,4 +85,16 @@ public class PointB extends Point {
         fileWriterPassing.close();
         fileWriterWaiting.close();
     }
+
+    public Integer getTime(){
+        Integer num1 = (int) Math.round(Math.random() * 5 + 24);
+        Integer num2 = (int) Math.round(Math.random() * 5 + 44);
+
+        if (Math.random() > 0.1){
+            return num1;
+        }else {
+            return num2;
+        }
+    }
+
 }

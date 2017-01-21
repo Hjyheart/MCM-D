@@ -61,9 +61,11 @@ public class AirPort {
         PointC c1 = new PointC(1);
         PointC c2 = new PointC(2);
         PointC c3 = new PointC(3);
+        PointCPre cb1 = new PointCPre(1);
         cArea.add(c1);
         cArea.add(c2);
         cArea.add(c3);
+        cArea.add(cb1);
         bArea = new BArea();
         PointB b1 = new PointB(1, cArea, pointD);
         PointB b2 = new PointB(2, cArea, pointD);
@@ -94,7 +96,7 @@ public class AirPort {
 
         init();
 
-        while(timeController.getTimeCounter() < 3600 * 100){
+        while(timeController.getTimeCounter() < 3600 * 24){
             ArrayList<Passenger> passengers = passengerController.getPassenger(timeController.getTimeCounter());
             if(passengers.size() != 0){
                 for (Passenger passenger : passengers){

@@ -28,8 +28,8 @@ public class PointA extends Point {
 
         while(getWaitingList().size() != 0 && dealPassengers.size() < 8){
             Passenger passenger = getWaitingList().poll();
-            // TODO:对时间取一个范围随机数
-            passenger.setDoing(5);
+
+            passenger.setDoing((int) (Math.round(Math.random() * 8) + 7));
             dealPassengers.add(passenger);
         }
 
