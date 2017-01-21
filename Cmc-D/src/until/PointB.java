@@ -9,8 +9,17 @@ import java.io.IOException;
 public class PointB extends Point {
     private FileWriter fileWriterWaiting;
     private FileWriter fileWriterPassing;
-    public PointB(Integer name) throws IOException {
+    private Passenger passenger;
+    private CArea next1;
+    private PointD next2;
+    private Integer countPassenger;
+
+    public PointB(Integer name, CArea cArea, PointD pointD) throws IOException {
         super(name);
+
+        next1 = cArea;
+        next2 = pointD;
+        countPassenger = 0;
 
         fileWriterWaiting = new FileWriter(String.valueOf(name) + "_B_Waiting.txt");
         fileWriterWaiting.write("B " + String.valueOf(name) + " Waiting Record\n");
@@ -22,8 +31,50 @@ public class PointB extends Point {
     }
 
     @Override
-    public void action(){
+    public void action(Boolean flag, Integer time){
+        if (passenger == null && getWaitingList().size() != 0){
+            passenger = getWaitingList().poll();
+            // TODO:对时间取一个范围随机数
+            passenger.setDoing(20);
+        }
 
+        if (passenger != null){
+            if (passenger.getDoing() > 0){
+                passenger.setDoing(passenger.getDoing() - 1);
+            }else{
+                countPassenger++;
+                passenger.setEndB(time);
+                if (Math.random() * 100 < 2){
+                    // to d
+                    passenger.setStartD(time);
+                    next2.add(passenger);
+                }else {
+                    // to c
+                    passenger.setStartC(time);
+                    if (Math.random() * 100 < 33){
+                        next1.getCs().get(0).add(passenger);
+                    }else if (Math.random() * 100 > 67){
+                        next1.getCs().get(1).add(passenger);
+                    }else{
+                        next1.getCs().get(2).add(passenger);
+                    }
+                }
+                passenger = null;
+            }
+        }
+
+        // record
+        try {
+            fileWriterWaiting.write(String.valueOf(getWaitingList().size()) + "\n");
+            fileWriterWaiting.flush();
+            if (flag){
+                fileWriterPassing.write(String.valueOf(countPassenger) + "\n");
+                fileWriterPassing.flush();
+                countPassenger = 0;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void exit() throws IOException {

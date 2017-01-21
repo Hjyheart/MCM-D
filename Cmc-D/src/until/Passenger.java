@@ -2,7 +2,6 @@ package until;
 
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 
 /**
  * Created by hongjiayong on 2017/1/20.
@@ -12,21 +11,35 @@ public class Passenger {
     private Integer arriveTime;
     private Integer exitTime;
     private Integer state;
+    private Boolean isPre;
     private Integer doing;
     private FileWriter fileWriter;
-    private ArrayList<Integer> waitingList;
+    private Integer startA;
+    private Integer endA;
+    private Integer startB;
+    private Integer endB;
+    private Integer startC;
+    private Integer endC;
+    private Integer startD;
+    private Integer endD;
 
-    public Passenger(Integer id, Integer arriveTime, Integer state, Integer doing, FileWriter fileWriter){
+
+    public Passenger(Integer id, Integer arriveTime, Integer state, Integer doing, Boolean isPre, FileWriter fileWriter){
         this.id = id;
         this.arriveTime = arriveTime;
         this.state = state;
         this.doing = doing;
         this.fileWriter = fileWriter;
+        this.isPre = isPre;
 
-        waitingList = new ArrayList<>();
-        for (int i = 0 ; i < 4; i++){
-            waitingList.add(0);
-        }
+        startA = 0;
+        endA = 0;
+        startB = 0;
+        endB = 0;
+        startC = 0;
+        endC = 0;
+        startD = 0;
+        endD = 0;
     }
 
     /* for setting & getting */
@@ -34,12 +47,68 @@ public class Passenger {
         return id;
     }
 
-    public ArrayList<Integer> getWaitingList() {
-        return waitingList;
+    public Integer getStartA() {
+        return startA;
     }
 
-    public void setWaitingList(ArrayList<Integer> waitingList) {
-        this.waitingList = waitingList;
+    public void setStartA(Integer startA) {
+        this.startA = startA;
+    }
+
+    public Integer getEndA() {
+        return endA;
+    }
+
+    public void setEndA(Integer endA) {
+        this.endA = endA;
+    }
+
+    public Integer getStartB() {
+        return startB;
+    }
+
+    public void setStartB(Integer startB) {
+        this.startB = startB;
+    }
+
+    public Integer getEndB() {
+        return endB;
+    }
+
+    public void setEndB(Integer endB) {
+        this.endB = endB;
+    }
+
+    public Integer getStartC() {
+        return startC;
+    }
+
+    public void setStartC(Integer startC) {
+        this.startC = startC;
+    }
+
+    public Integer getEndC() {
+        return endC;
+    }
+
+    public void setEndC(Integer endC) {
+        this.endC = endC;
+    }
+
+    public Integer getStartD() {
+        return startD;
+    }
+
+    public void setStartD(Integer startD) {
+        this.startD = startD;
+    }
+
+    public Integer getEndD() {
+        return endD;
+    }
+
+    public void setEndD(Integer endD) {
+        this.endD = endD;
     }
 
     public void setId(Integer id) {
@@ -78,10 +147,26 @@ public class Passenger {
         this.doing = doing;
     }
 
+    public Boolean getPre() {
+        return isPre;
+    }
+
+    public void setPre(Boolean pre) {
+        isPre = pre;
+    }
+
+    public FileWriter getFileWriter() {
+        return fileWriter;
+    }
+
+    public void setFileWriter(FileWriter fileWriter) {
+        this.fileWriter = fileWriter;
+    }
+
     /* some method */
     public void writing() throws IOException {
-        fileWriter.write(id + " " + arriveTime + " " + exitTime + " " + waitingList.get(0) + " " +
-                waitingList.get(1) + " " + waitingList.get(2) + " " + waitingList.get(3));
+        fileWriter.write(id + " " + arriveTime + " " + exitTime + " " + String.valueOf(endA - startA) + " " +
+                String.valueOf(endB - startB) + " " + String.valueOf(endC - startC) + " " + String.valueOf(endD - startD) + "\n");
         fileWriter.flush();
     }
 }

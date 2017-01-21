@@ -3,6 +3,7 @@ package controller;
 import until.Passenger;
 
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -18,9 +19,11 @@ public class PassengerController {
         this.fileWriter = fileWriter;
         passengerCounter = 0;
         dl = new LinkedList<>();
-
-        for (int i = 0; i < 80000; i++){
+        int count = 0;
+        for (int i = 0; i < 75000; i++){
             // TODO: 泊松流
+            count += (int)(-1.152 * Math.log(Math.random()));
+            dl.add(count);
         }
     }
 
@@ -32,14 +35,22 @@ public class PassengerController {
         this.passengerCounter = passengerCounter;
     }
 
-    public Passenger getPassenger(Integer time){
-        if (time == dl.peek()){
+    public ArrayList<Passenger> getPassenger(Integer time){
+        ArrayList<Passenger> passengers = new ArrayList<>();
+//        System.out.println(time.compareTo(dl.peek()));
+        while (!dl.isEmpty() && time.compareTo(dl.peek()) == 0){
             dl.poll();
-            Passenger passenger = new Passenger(passengerCounter, time, 0, 0, fileWriter);
-            return passenger;
-        }else{
-            return null;
+            Passenger passenger;
+            if (Math.random() * 100 <= 45){
+                passenger = new Passenger(passengerCounter, time, 0, 0, true, fileWriter);
+            }else{
+                passenger = new Passenger(passengerCounter, time, 0, 0, false, fileWriter);
+            }
+            passengerCounter++;
+            passengers.add(passenger);
         }
+
+        return passengers;
     }
 
 

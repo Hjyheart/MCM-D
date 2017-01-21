@@ -4,6 +4,7 @@ import until.*;
 
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Created by hongjiayong on 2017/1/20.
@@ -19,14 +20,12 @@ public class AirPort {
     public static FileWriter passengerWriter;
     public static FileWriter pointAWaitingWriter;
     public static FileWriter pointAPassingWriter;
-    public static FileWriter pointCWaitingWriter;
-    public static FileWriter pointCPassingWriter;
     public static FileWriter pointDWaitingWriter;
     public static FileWriter pointDPassingWriter;
 
     public static PointA pointA;
     public static BArea bArea;
-    public static PointC pointC;
+    public static CArea cArea;
     public static PointD pointD;
 
     public static TimeController timeController;
@@ -48,14 +47,6 @@ public class AirPort {
         pointAPassingWriter.write("A Passing Record");
         pointAPassingWriter.flush();
 
-        pointCWaitingWriter = new FileWriter("C_Waiting.txt");
-        pointCWaitingWriter.write("C Waiting Record\n");
-        pointCWaitingWriter.flush();
-
-        pointCPassingWriter = new FileWriter("C_Passing.txt");
-        pointCPassingWriter.write("C Passing Record\n");
-        pointCPassingWriter.flush();
-
         pointDWaitingWriter = new FileWriter("D_Waiting.txt");
         pointDWaitingWriter.write("D Waiting Record\n");
         pointDWaitingWriter.flush();
@@ -65,16 +56,24 @@ public class AirPort {
         pointDPassingWriter.flush();
 
         /* points */
-        pointA = new PointA(0);
+        pointD = new PointD(3, pointDWaitingWriter, pointDPassingWriter);
+        cArea = new CArea();
+        PointC c1 = new PointC(1);
+        PointC c2 = new PointC(2);
+        PointC c3 = new PointC(3);
+        cArea.add(c1);
+        cArea.add(c2);
+        cArea.add(c3);
         bArea = new BArea();
-        PointB b1 = new PointB(1);
-        PointB b2 = new PointB(2);
-        PointBPre bp1 = new PointBPre(1);
+        PointB b1 = new PointB(1, cArea, pointD);
+        PointB b2 = new PointB(2, cArea, pointD);
+        PointB b3 = new PointB(3, cArea, pointD);
+        PointBPre bp1 = new PointBPre(1, cArea, pointD);
         bArea.add(b1);
         bArea.add(b2);
+        bArea.add(b3);
         bArea.add(bp1);
-        pointC = new PointC(2);
-        pointD = new PointD(3);
+        pointA = new PointA(0, bArea, pointAWaitingWriter, pointAPassingWriter);
 
         /* controller */
         timeController = new TimeController();
@@ -86,8 +85,6 @@ public class AirPort {
         pointAWaitingWriter.close();
         pointAPassingWriter.close();
         bArea.exit();
-        pointCWaitingWriter.close();
-        pointCPassingWriter.close();
         pointDWaitingWriter.close();
         pointDPassingWriter.close();
     }
@@ -97,16 +94,25 @@ public class AirPort {
 
         init();
 
-        while(timeController.getTimeCounter() < 10){
-            Passenger passenger = passengerController.getPassenger(timeController.getTimeCounter());
-            if(passenger != null){
-                pointA.add(passenger);
+        while(timeController.getTimeCounter() < 3600 * 100){
+            ArrayList<Passenger> passengers = passengerController.getPassenger(timeController.getTimeCounter());
+            if(passengers.size() != 0){
+                for (Passenger passenger : passengers){
+                    passenger.setStartA(timeController.getTimeCounter());
+                    pointA.add(passenger);
+                }
             }
-
-            pointA.action();
-            bArea.action();
-            pointC.action();
-            pointD.action();
+            if (timeController.getTimeCounter() % 60 == 0){
+                pointA.action(true, timeController.getTimeCounter());
+                bArea.action(true, timeController.getTimeCounter());
+                cArea.action(true, timeController.getTimeCounter());
+                pointD.action(true, timeController.getTimeCounter());
+            }else{
+                pointA.action(false, timeController.getTimeCounter());
+                bArea.action(false, timeController.getTimeCounter());
+                cArea.action(false, timeController.getTimeCounter());
+                pointD.action(false, timeController.getTimeCounter());
+            }
 
             timeController.tick();
         }

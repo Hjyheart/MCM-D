@@ -31,8 +31,22 @@ public class BArea {
         bsPre.add(pointBPre);
     }
 
-    public void action(){
+    public ArrayList<PointBPre> getBsPre() {
+        return bsPre;
+    }
 
+    public void setBsPre(ArrayList<PointBPre> bsPre) {
+        this.bsPre = bsPre;
+    }
+
+    public void action(Boolean flag, Integer time){
+        for (PointB pointB : bs){
+            pointB.action(flag, time);
+        }
+
+        for (PointBPre pointBPre : bsPre){
+            pointBPre.action(flag, time);
+        }
     }
 
     public void exit() throws IOException {

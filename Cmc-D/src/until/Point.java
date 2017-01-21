@@ -1,5 +1,6 @@
 package until;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -33,18 +34,8 @@ public class Point {
     }
 
     /* some method */
-    public void action(){
+    public void action(Boolean flag, Integer time) throws IOException {
 
-//        if (waitingList.peek().getDoing() > 0){
-//            waitingList.peek().setDoing(waitingList.peek().getDoing() - 1);
-//        }else{
-//
-//        }
-//
-//        for (until.Passenger passenger : waitingList){
-//            Integer waitingTime = passenger.getWaitingList().get(name);
-//            passenger.getWaitingList().set(name, waitingTime++);
-//        }
     }
 
     public void add(Passenger passenger){
