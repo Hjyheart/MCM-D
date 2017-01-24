@@ -1,0 +1,48 @@
+This is BibTeX, Version 0.99d (TeX Live 2016)
+Capacity: max_strings=35307, hash_size=35307, hash_prime=30011
+The top-level auxiliary file: mcmpaper.aux
+The style file: unsrt.bst
+Database file #1: mybibtex.bib
+Warning--there's a number but no volume in 曾俊杰2009机场安检设置与优化
+You've used 7 entries,
+            1791 wiz_defined-function locations,
+            484 strings with 4348 characters,
+and the built_in function-call counts, 1099 in all, are:
+= -- 97
+> -- 28
+< -- 0
++ -- 14
+- -- 7
+* -- 49
+:= -- 183
+add.period$ -- 19
+call.type$ -- 7
+change.case$ -- 5
+chr.to.int$ -- 0
+cite$ -- 8
+duplicate$ -- 53
+empty$ -- 129
+format.name$ -- 7
+if$ -- 241
+int.to.chr$ -- 0
+int.to.str$ -- 7
+missing$ -- 5
+newline$ -- 36
+num.names$ -- 7
+pop$ -- 29
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 19
+stack$ -- 0
+substring$ -- 50
+swap$ -- 7
+text.length$ -- 0
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 11
+width$ -- 8
+write$ -- 71
+(There was 1 warning)

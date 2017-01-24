@@ -1,0 +1,12 @@
+%!TEX root = mcmpaper.tex
+\section{Model Analysis}
+\subsection{Analysis of problem a}
+% 第一问分析
+As we are aware of the detailed process of security check and data of each step, we can get the time every passenger spent in each Zone of the security checkpoint. After making reasonable assumption, we can simulate out the average wait time and variance in wait time of passengers in the security checkpoint by computer programming. To establish the Model 1 and identify the bottlenecks and problematic Zones.
+\subsection{Analysis of problem b}
+% 第二问分析
+Based on the Model 1, we should develop modifications to improve passenger throughput and reduce variance in wait time. Firstly we set the Zone A for both Pre-check and regular check to use, then we adjust the number of officers in Zone A and Pre-check and regular lanes in Zone B. Because the bottleneck has been identified in Model 1, through traversal adjustment to the number of lanes in a certain range, we can get the passenger throughput and wait time variance in each condition. Considering the cost, we should choose the best number of Zone A officer and lanes in Zone B. In addition, the details of the process can also be changed such as adding another security officer next to the belt in Zone B to slow down the blockage of manual check.
+
+\subsection{Analysis of problem c}
+% 第三问分析
+In this problem we consider how cultural differences may impact the way in which passenger's process through checkpoints as a sensitivity analysis. We take two cultural differences into consideration. One is passengers in some places are much slower, which will result in a longer time of the whole process. The other is that in some area like Italy people enjoy chic lifestyle and wouldn't like to take much belongings, so the time in Zone B will reduce. We take these two differences into simulation separately and make sensitivity analysis.

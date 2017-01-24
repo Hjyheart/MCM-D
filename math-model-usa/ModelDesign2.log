@@ -1,0 +1,313 @@
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016) (preloaded format=pdflatex 2016.9.19)  23 JAN 2017 22:32
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**ModelDesign2.tex
+(./ModelDesign2.tex
+LaTeX2e <2016/03/31>
+Babel <3.9r> and hyphenation patterns for 83 language(s) loaded.
+! Undefined control sequence.
+l.1 \section
+            {problem b model design}
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 \section{p
+              roblem b model design}
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+Missing character: There is no p in font nullfont!
+Missing character: There is no r in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no b in font nullfont!
+Missing character: There is no m in font nullfont!
+Missing character: There is no o in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no l in font nullfont!
+Missing character: There is no d in font nullfont!
+Missing character: There is no e in font nullfont!
+Missing character: There is no s in font nullfont!
+Missing character: There is no i in font nullfont!
+Missing character: There is no g in font nullfont!
+Missing character: There is no n in font nullfont!
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 1--2
+[]
+ []
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.4 \begin{equation}
+                    
+You're in trouble here.  Try typing  <return>  to proceed.
+If that doesn't work, type  X <return>  to quit.
+
+
+Overfull \hbox (20.0pt too wide) in paragraph at lines 4--4
+[] 
+ []
+
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <7> on input line 4.
+LaTeX Font Info:    External font `cmex10' loaded for size
+(Font)              <5> on input line 4.
+
+! LaTeX Error: Environment aligned undefined.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.6 \begin{aligned}
+                   [b]
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: \begin{equation} on input line 4 ended by \end{aligned}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.8 \end{aligned}
+                 
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Overfull \hbox (63.23384pt too wide) detected at line 10
+[]
+ []
+
+! Undefined control sequence.
+\@footnotetext ...tins {\reset@font \footnotesize 
+                                                  \interlinepenalty \interfo...
+l.16 }
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+! Undefined control sequence.
+\@footnotetext ...}\color@begingroup \@makefntext 
+                                                  {\rule \z@ \footnotesep \i...
+l.16 }
+      
+The control sequence at the end of the top line
+of your error message was never \def'ed. If you have
+misspelled it (e.g., `\hobx'), type `I' and the correct
+spelling (e.g., `I\hbox'). Otherwise just continue,
+and I'll forget about whatever was undefined.
+
+
+Overfull \hbox (10.63885pt too wide) in paragraph at lines 16--16
+[][]\OT1/cmr/bx/n/10 P\OT1/cmr/m/n/10 :
+ []
+
+
+Overfull \hbox (26.66672pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 Queu-
+ []
+
+
+Overfull \hbox (13.33337pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 ing
+ []
+
+
+Overfull \hbox (16.16669pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 sat-
+ []
+
+
+Overfull \hbox (10.05556pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 is-
+ []
+
+
+Overfull \hbox (15.83336pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 fac-
+ []
+
+
+Overfull \hbox (17.22227pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 tion 
+ []
+
+
+Overfull \hbox (9.69441pt too wide) in paragraph at lines 16--16
+\OT1/cmr/bx/n/10 L\OT1/cmr/m/n/10 :
+ []
+
+
+Overfull \hbox (17.22224pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 The
+ []
+
+
+Overfull \hbox (19.44449pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 time
+ []
+
+
+Overfull \hbox (11.69444pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 re-
+ []
+
+
+Overfull \hbox (27.52783pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 quired
+ []
+
+
+Overfull \hbox (8.88892pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 to
+ []
+
+
+Overfull \hbox (18.44447pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 pass
+ []
+
+
+Overfull \hbox (10.55559pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 all
+ []
+
+
+Overfull \hbox (11.72221pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 se-
+ []
+
+
+Overfull \hbox (13.33334pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 cu-
+ []
+
+
+Overfull \hbox (15.58337pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 rity
+ []
+
+
+Overfull \hbox (30.33336pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 checks; 
+ []
+
+
+Overfull \hbox (9.16664pt too wide) in paragraph at lines 16--16
+\OT1/cmr/bx/n/10 S\OT1/cmr/m/n/10 :
+ []
+
+
+Overfull \hbox (17.22224pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 The
+ []
+
+
+Overfull \hbox (21.72226pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 stan-
+ []
+
+
+Overfull \hbox (20.02783pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 dard
+ []
+
+
+Overfull \hbox (13.33334pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 de-
+ []
+
+
+Overfull \hbox (11.38892pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 vi-
+ []
+
+
+Overfull \hbox (8.33334pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 a-
+ []
+
+
+Overfull \hbox (17.22227pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 tion
+ []
+
+
+Overfull \hbox (8.05559pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 of
+ []
+
+
+Overfull \hbox (13.88892pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 the
+ []
+
+
+Overfull \hbox (11.72221pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 se-
+ []
+
+
+Overfull \hbox (13.33334pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 cu-
+ []
+
+
+Overfull \hbox (15.58337pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 rity
+ []
+
+
+Overfull \hbox (13.61113pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 pe-
+ []
+
+
+Overfull \hbox (20.30562pt too wide) in paragraph at lines 16--16
+\OT1/cmr/m/n/10 riod;| 
+ []
+
+)
+! Emergency stop.
+<*> ModelDesign2.tex
+                    
+*** (job aborted, no legal \end found)
+
+ 
+Here is how much of TeX's memory you used:
+ 12 strings out of 493014
+ 217 string characters out of 6133351
+ 54601 words of memory out of 5000000
+ 3654 multiletter control sequences out of 15000+600000
+ 3948 words of font info for 15 fonts, out of 8000000 for 9000
+ 1141 hyphenation exceptions out of 8191
+ 18i,6n,12p,81b,142s stack positions out of 5000i,500n,10000p,200000b,80000s
+!  ==> Fatal error occurred, no output PDF file produced!

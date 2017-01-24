@@ -1,0 +1,27 @@
+%!TEX root = mcmpaper.tex
+\section{problem c model design}
+In order to study the impact of cultural differences on the airport security model, we analyzed the following two factors separately:
+\subsection{Cultural differences}
+\begin{enumerate}
+	\item Travelers in some countries and regions are generally slow or fast, and their actions, including walking, baggage collection, taking documents, shoes off shoes, etc. The time cost will be longer or shorter than others . This will inevitably lead to the entire security process longer or shorter, the standard deviation will also be affected. Specifically, this cultural difference is quantified to the data is, the time required in zone A and B to check will be longer or shorter. In the following analysis, we assume that the average moving speed of the country is 10\% slower or faster than the rest.
+	\item the passengers of some countries and regions have a free and independent character traits, they are common simple backpackers, travel with only one or two bags. While others are characterized by a conservative moderation character, they travel generally will bring a lot of belongings. This cultural difference in the airport security process is reflected in the zone B, they will spend less or more time compared to   passengers of other regions in the collection of belongings. In the following analysis, we assume that the average speed of the country is 10\% slower or faster in the zone B than the rest.
+\end{enumerate}
+
+Based on the above cultural differences, adjust the processing time of A and B regions, and re-simulate the corresponding data to carry out sensitivity analysis. The result is showed as followed:
+
+\begin{table}[H]
+\centering
+\caption{The Influence of Cultural Difference on Time}\label{tab:cul_diff}
+\begin{tabular}{|*{6}{r|}}
+\hline
+\multicolumn{2}{|c|}{\multirow{2}*{}}
+& \multicolumn{2}{|c|}{Global Speed(1)} & \multicolumn{2}{|c|}{Zone B Speed(2)}\\\cline{3-6}
+\multicolumn{2}{|c|}{}  & +10\%   & -10\% & +10\% & -10\%\\\hline
+\multirow{1}*{Average time}
+& \% & -72.4   & 30.9 & -51.5 & 25.3 \\\hline
+\multirow{1}*{The variance of mean time}
+& \% & -72.5   & 31.5 & -58.6 & 27.6 \\\hline
+\end{tabular}
+\end{table}
+
+According to the table above, we can know what measures should be taken for each of the two different cultural. For the cultural differences 1, we need to properly adjust the number of equipment and staff of zone A\&B, to meet the changes in the speed of passenger movement. If the passenger is slower, you need to increase the number of equipment and staff of zone A\&B, if faster, take the contrary. For cultural differences 2, we need to properly adjust and the number of the equipment and staff of zone B to accommodate the number of passengers carrying belongings backpack. If passengers of a region carrying generally more bags backpack, it should be appropriate to increase the number of the equipment and staff of zone B, if less, take the contrary.

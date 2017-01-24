@@ -1,0 +1,494 @@
+% !TEX root = mcmpaper.tex
+
+\section*{Appendix}
+\lstset{frame=tb,
+  language=Java,
+  aboveskip=3mm,
+  belowskip=3mm,
+  showstringspaces=false,
+  columns=flexible,
+  basicstyle={\small\ttfamily},
+  numbers=none,
+  numberstyle=\tiny\color{gray},
+  keywordstyle=\color{blue},
+  commentstyle=\color{dkgreen},
+  stringstyle=\color{mauve},
+  breaklines=true,
+  breakatwhitespace=true
+  tabsize=3
+}
+
+\definecolor{dkgreen}{rgb}{0,0.6,0}
+\definecolor{gray}{rgb}{0.5,0.5,0.5}
+\definecolor{mauve}{rgb}{0.58,0,0.82}
+
+
+\subsection*{Emulation program core code}
+\begin{lstlisting}
+/**
+ * Control time.
+ */
+public class TimeController {
+    private Integer timeCounter;
+
+    public TimeController(){
+        timeCounter = 0;
+    }
+
+    public Integer getTimeCounter() {
+        return timeCounter;
+    }
+
+    public void setTimeCounter(Integer timeCounter) {
+        this.timeCounter = timeCounter;
+    }
+
+    public void tick(){
+        timeCounter++;
+    }
+}
+
+/**
+ * Control Passenger
+ */
+public class PassengerController {
+    private Integer passengerCounter;
+    private Queue<Integer> dl;
+    private FileWriter fileWriter;
+    private ArrayList<Integer> timeRep;
+
+    public PassengerController(FileWriter fileWriter){
+        timeRep = new ArrayList<>();
+        this.fileWriter = fileWriter;
+        passengerCounter = 0;
+        dl = new LinkedList<>();
+        int count = 0;
+        for (int i = 0; i < 75000; i++){
+            count += Math.round(-1.152 * Math.log(Math.random()));
+            dl.add(count);
+        }
+    }
+
+    public Integer getPassengerCounter() {
+        return passengerCounter;
+    }
+
+    public void setPassengerCounter(Integer passengerCounter) {
+        this.passengerCounter = passengerCounter;
+    }
+
+    public ArrayList<Passenger> getPassenger(Integer time){
+        ArrayList<Passenger> passengers = new ArrayList<>();
+        while (!dl.isEmpty() && time.compareTo(dl.peek()) == 0){
+            dl.poll();
+            Passenger passenger;
+            if (Math.random() * 100 <= 45){
+                passenger = new Passenger(passengerCounter, time, 0, 0, true, fileWriter);
+            }else{
+                passenger = new Passenger(passengerCounter, time, 0, 0, false, fileWriter);
+            }
+            passengerCounter++;
+            passengers.add(passenger);
+        }
+
+        return passengers;
+    }
+
+    public Integer getTime(){
+        return 1;
+    }
+}
+
+/**
+ * Main method
+ */
+public static void main(String [] args) throws IOException {
+        System.out.println("Airport simulation");
+
+        init();
+
+        while(timeController.getTimeCounter() < 3600 * 24 * 4){
+            ArrayList<Passenger> passengers = passengerController.getPassenger(timeController.getTimeCounter());
+            if(passengers.size() != 0){
+                for (Passenger passenger : passengers){
+                    passenger.setStartA(timeController.getTimeCounter());
+                    pointA.add(passenger);
+                }
+            }
+            if (timeController.getTimeCounter() % 60 == 0){
+                pointA.action(true, timeController.getTimeCounter());
+                bArea.action(true, timeController.getTimeCounter());
+                cArea.action(true, timeController.getTimeCounter());
+                pointD.action(true, timeController.getTimeCounter());
+            }else{
+                pointA.action(false, timeController.getTimeCounter());
+                bArea.action(false, timeController.getTimeCounter());
+                cArea.action(false, timeController.getTimeCounter());
+                pointD.action(false, timeController.getTimeCounter());
+            }
+
+            timeController.tick();
+        }
+        exit();
+    }
+}
+
+/**
+ * Passenger.
+ */
+public class Passenger {
+    private Integer id;
+    private Integer arriveTime;
+    private Integer exitTime;
+    private Integer state;
+    private Boolean isPre;
+    private Integer doing;
+    private FileWriter fileWriter;
+    private Integer startA;
+    private Integer endA;
+    private Integer startB;
+    private Integer endB;
+    private Integer startC;
+    private Integer endC;
+    private Integer startD;
+    private Integer endD;
+
+
+    public Passenger(Integer id, Integer arriveTime, Integer state, Integer doing, Boolean isPre, FileWriter fileWriter){
+        this.id = id;
+        this.arriveTime = arriveTime;
+        this.state = state;
+        this.doing = doing;
+        this.fileWriter = fileWriter;
+        this.isPre = isPre;
+
+        startA = 0;
+        endA = 0;
+        startB = 0;
+        endB = 0;
+        startC = 0;
+        endC = 0;
+        startD = 0;
+        endD = 0;
+    }
+
+    /* method */
+    public void writing() throws IOException {
+        fileWriter.write(id + " " + arriveTime + " " + exitTime + " " + String.valueOf(endA - startA) + " " +
+                String.valueOf(endB - startB) + " " + String.valueOf(endC - startC) + " " +
+                String.valueOf(endD - startD) + " " + String.valueOf(getPre()) + "\n");
+        fileWriter.flush();
+    }
+}
+
+/**
+ * A Area
+ */
+public class PointA extends Point {
+    private FileWriter fileWriterWaiting;
+    private FileWriter fileWriterPassing;
+    private BArea next;
+    private ArrayList<Passenger> dealPassengers;
+    private Integer countPassenger;
+
+    public PointA(Integer name, BArea pointBPre, FileWriter fileWriterWaiting, FileWriter fileWriterPassing) {
+        super(name);
+        next = pointBPre;
+        countPassenger = 0;
+        this.fileWriterPassing = fileWriterPassing;
+        this.fileWriterWaiting = fileWriterWaiting;
+        dealPassengers = new ArrayList<>();
+    }
+
+    @Override
+    public void action(Boolean flag, Integer time){
+
+        while(getWaitingList().size() != 0 && dealPassengers.size() < 12){
+            Passenger passenger = getWaitingList().poll();
+
+            passenger.setDoing(((int) ( (Math.round(Math.random() * 8) + 7))));
+            dealPassengers.add(passenger);
+        }
+
+
+        ArrayList<Passenger> temp = new ArrayList<>();
+
+        for (Passenger passenger : dealPassengers){
+            temp.add(passenger);
+        }
+
+        for (Passenger passenger : temp){
+            deal(passenger, time);
+        }
+
+        // record
+        try {
+            fileWriterWaiting.write(String.valueOf(getWaitingList().size()) + "\n");
+            fileWriterWaiting.flush();
+            if (flag){
+                fileWriterPassing.write(String.valueOf(countPassenger) + "\n");
+                fileWriterPassing.flush();
+                countPassenger = 0;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void deal(Passenger passenger, Integer time){
+        if (passenger != null){
+            if (passenger.getDoing() > 0){
+                passenger.setDoing(passenger.getDoing() - 1);
+            }else{
+                countPassenger++;
+                passenger.setEndA(time);
+                passenger.setStartB(time);
+                if (passenger.getPre()){
+                    // Pre
+                    next.getBsPre().get(gotoB(7)).add(passenger);
+                }else{
+                    // regular
+                    next.getBs().get(gotoB(21)).add(passenger);
+                }
+                for (int i = 0; i < dealPassengers.size(); i++){
+                    if (dealPassengers.get(i).equals(passenger)){
+                        dealPassengers.remove(i);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+
+    public Integer gotoB(int n){
+        Integer num = (int) (Math.random() * n);
+        return num;
+    }
+}
+
+/**
+ * B Area
+ */
+public class PointB extends Point {
+    private FileWriter fileWriterWaiting;
+    private FileWriter fileWriterPassing;
+    private Passenger passenger;
+    private CArea next1;
+    private PointD next2;
+    private Integer countPassenger;
+
+    public PointB(Integer name, CArea cArea, PointD pointD) throws IOException {
+        super(name);
+
+        next1 = cArea;
+        next2 = pointD;
+        countPassenger = 0;
+
+        fileWriterWaiting = new FileWriter(String.valueOf(name) + "_B_Waiting.txt");
+        fileWriterWaiting.write("B " + String.valueOf(name) + " Waiting Record\n");
+        fileWriterWaiting.flush();
+
+        fileWriterPassing = new FileWriter(String.valueOf(name) + "_B_Passing.txt");
+        fileWriterPassing.write("B " + String.valueOf(name) + " Passing Record\n");
+        fileWriterPassing.flush();
+    }
+
+    @Override
+    public void action(Boolean flag, Integer time){
+        if (passenger == null && getWaitingList().size() != 0){
+            passenger = getWaitingList().poll();
+
+            passenger.setDoing(getTime());
+        }
+
+        if (passenger != null){
+            if (passenger.getDoing() > 0){
+                passenger.setDoing(passenger.getDoing() - 1);
+            }else{
+                countPassenger++;
+                passenger.setEndB(time);
+                if (Math.random() * 100 < 2){
+                    // to d
+                    passenger.setStartD(time);
+                    next2.add(passenger);
+                }else {
+                    // to c
+                    passenger.setStartC(time);
+                    if (!passenger.getPre()) {
+                        next1.getCs().get(gotoC(21)).add(passenger);
+                    }else{
+                        next1.getCbs().get(gotoC(7)).add(passenger);
+                    }
+                }
+                passenger = null;
+            }
+        }
+
+        // record
+        try {
+            fileWriterWaiting.write(String.valueOf(getWaitingList().size()) + "\n");
+            fileWriterWaiting.flush();
+            if (flag){
+                fileWriterPassing.write(String.valueOf(countPassenger) + "\n");
+                fileWriterPassing.flush();
+                countPassenger = 0;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void exit() throws IOException {
+        fileWriterPassing.close();
+        fileWriterWaiting.close();
+    }
+
+    public Integer getTime(){
+        Integer num1 = (int) Math.round(Math.random() * 5 + 24);
+        Integer num2 = (int) Math.round(Math.random() * 5 + 44);
+
+        if (Math.random() > 0.1){
+            return num1;
+        }else {
+            return num2;
+        }
+    }
+
+    public Integer gotoC(int n){
+        Integer num = (int) (Math.random() * n);
+        return num;
+    }
+}
+
+/**
+ * C Area
+ */
+public class PointC extends Point {
+    private FileWriter fileWriterWaiting;
+    private FileWriter fileWriterPassing;
+    private Passenger passenger;
+    private Integer countPassenger;
+    public PointC(Integer name) throws IOException {
+        super(name);
+
+        fileWriterWaiting = new FileWriter(String.valueOf(name) + "_C_Waiting.txt");
+        fileWriterWaiting.write("C " + String.valueOf(name) + " Waiting Record\n");
+        fileWriterWaiting.flush();
+
+        fileWriterPassing = new FileWriter(String.valueOf(name) + "_C_Passing.txt");
+        fileWriterPassing.write("C " + String.valueOf(name) + " Passing Record\n");
+        fileWriterPassing.flush();
+    }
+
+    @Override
+    public void action(Boolean flag, Integer time) throws IOException {
+        if (passenger == null && getWaitingList().size() != 0){
+            passenger = getWaitingList().poll();
+            passenger.setDoing((int) Math.round(Math.random() * 5 + 4));
+        }
+
+        if (passenger != null){
+            if (passenger.getDoing() > 0){
+                passenger.setDoing(passenger.getDoing() - 1);
+            }else{
+                countPassenger++;
+                passenger.setEndC(time);
+                passenger.setExitTime(time);
+                passenger.writing();
+                passenger = null;
+            }
+        }
+
+        // record
+        try {
+            fileWriterWaiting.write(String.valueOf(getWaitingList().size()) + "\n");
+            fileWriterWaiting.flush();
+            if (flag){
+                fileWriterPassing.write(String.valueOf(countPassenger) + "\n");
+                fileWriterPassing.flush();
+                countPassenger = 0;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void exit() throws IOException {
+        fileWriterPassing.close();
+        fileWriterWaiting.close();
+    }
+}
+
+/**
+ * D Area
+ */
+public class PointD extends Point {
+    private FileWriter fileWriterWaiting;
+    private FileWriter fileWriterPassing;
+    private ArrayList<Passenger> dealPassengers;
+    private Integer countPassenger;
+    public PointD(Integer name, FileWriter fileWriterWaiting, FileWriter fileWriterPassing) {
+        super(name);
+        this.fileWriterPassing = fileWriterPassing;
+        this.fileWriterWaiting = fileWriterWaiting;
+        dealPassengers = new ArrayList<>();
+        countPassenger = 0;
+    }
+
+    @Override
+    public void action(Boolean flag, Integer time) throws IOException {
+        while(getWaitingList().size() != 0 && dealPassengers.size() < 4){
+            Passenger passenger = getWaitingList().poll();
+            passenger.setDoing(60);
+            dealPassengers.add(passenger);
+        }
+
+        ArrayList<Passenger> temp = new ArrayList<>();
+
+        for (Passenger passenger : dealPassengers){
+            temp.add(passenger);
+        }
+
+        for (Passenger passenger : temp){
+            deal(passenger, time);
+        }
+
+        // record
+        try {
+            fileWriterWaiting.write(String.valueOf(getWaitingList().size()) + "\n");
+            fileWriterWaiting.flush();
+            if (flag){
+                fileWriterPassing.write(String.valueOf(countPassenger) + "\n");
+                fileWriterPassing.flush();
+                countPassenger = 0;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void deal(Passenger passenger, Integer time) throws IOException {
+        if (passenger != null){
+            if (passenger.getDoing() > 0){
+                passenger.setDoing(passenger.getDoing() - 1);
+            }else{
+                countPassenger++;
+                passenger.setEndD(time);
+                passenger.setExitTime(time);
+                passenger.writing();
+                for (int i = 0; i < dealPassengers.size(); i++){
+                    if (dealPassengers.get(i).equals(passenger)){
+                        dealPassengers.remove(i);
+                        break;
+                    }
+                }
+            }
+        }
+    }
+}
+
+\end{lstlisting}
+
+

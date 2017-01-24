@@ -1,0 +1,10 @@
+# Fdb version 3
+["pdflatex"] 1484895956 "body.tex" "body.pdf" "body" 1484895957
+  "/usr/local/texlive/2016/texmf-dist/web2c/texmf.cnf" 1463093894 31953 b9489e6e586f798610c60aec1f5ec548 ""
+  "/usr/local/texlive/2016/texmf-var/web2c/xetex/xelatex.fmt" 1474271225 3520379 2146dd232411e21ec256a7d4525e2684 ""
+  "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
+  "body.aux" 1484895956 8 a94a2480d3289e625eea47cd1b285758 ""
+  "body.tex" 1484895954 0 d41d8cd98f00b204e9800998ecf8427e ""
+  (generated)
+  "body.log"
+  "body.pdf"

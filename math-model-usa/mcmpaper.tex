@@ -1,0 +1,153 @@
+\documentclass[a4paper, 12pt]{article}
+% ----- Loading the Package MCMthesis -----
+% -----           v 5.01-L            -----
+% `tcn' is short for `Team Control Number'.
+% You should fill your tcn after the equal sign following tcn.
+% The option `sheet' contorls whether the summary sheet
+% will appear.
+% The option `abstract' controls whether the abstract
+% will appear in the title-page.
+\usepackage[tcn = 55429, sheet = true, abstract = false]{MCMthesis}
+% ----- Question Mark -----
+\problem{D}
+% ----- Fonts settings -----
+% You may need to install the font files, if it's needed.
+% Disable it, if you don't want this font.
+\usepackage{palatino}
+
+%各种宏包
+\usepackage{indentfirst}
+\usepackage{color}
+\usepackage{caption}
+\usepackage{cite}
+\usepackage{graphicx}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{subfigure}
+\usepackage{listings}
+\usepackage[marginal]{footmisc}
+\allowdisplaybreaks
+% ----- Set the skip betweent the paragraphics -----
+\setlength\parskip{.5\baselineskip}
+% ----- The name of Abstract ------
+\providecommand{\abstractname}{\relax} % <-- Do not modify here.
+\renewcommand{\abstractname}{Summary} % <-- Modify here, if needed.
+
+
+% -----------------------------------
+% ===== The Title of Your Paper =====
+% -----------------------------------
+\title{The \LaTeX Template for  MCM Version 5.0}
+% ---------------------------------------
+% ===== The Author(s) of Your Paper =====
+% ---------------------------------------
+\author{\small \href{http://www.latexstudio.net/}{\includegraphics[width=7cm]{logo}}}
+% ----------------
+% ===== Time =====
+% ----------------
+\date{\today}
+\begin{document}
+\nocite{*}
+\bibliographystyle{unsrt}
+% Abstract should be put before `\maketitle'
+\input{Abstract}
+
+\pagestyle{fancy}
+\maketitle
+
+
+\newpage
+% Generate the Table of Contents, if it's needed.
+\tableofcontents
+\newpage
+% The body of your paper
+\input{body.tex}
+\clearpage
+\phantomsection
+\addcontentsline{toc}{section}{Reference} %向目录中添加条目，以章的名义
+\bibliography{mybibtex}
+\newpage
+\addcontentsline{toc}{section}{Appendix} %向目录中添加条目，以章的名义
+\input{appendix.tex}
+\end{document}
+% ----- End of Document Body -----
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% %=====================导=======言==============================
+% % \documentclass[a4paper,12pt]{article}
+% \documentclass[a4paper,12pt,titlepage]{article}
+% %======================Include Packages========================
+
+% \usepackage[14526]{MCMthesis}  %队号在这里填写
+% % \problem{C}
+% %===============设置正文和数学字体=============================
+% %字体定义，大家可以参看网站：http://www.tug.dk/FontCatalogue/
+% %有100多字体，可以复制放在这里设置字体，一般用默认字体即可。
+% %有些字体需要安装一些字体文件，注意辨别。
+% %我参照 MCM论文集的字体 使用如下宏包来定制字体。
+% \usepackage{palatino}
+
+% %设置段落之间的距离，若不需要删除或者注释掉即可。
+% \setlength\parskip{.8\baselineskip}
+
+% %各种宏包
+% \usepackage{caption}
+% \usepackage{graphicx}
+% \usepackage{array}
+
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%$$$$$$$==正文开始==$$$$$$$%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% %==========================论文标题===============================
+% % \title{The \LaTeX Template for  MCM Version4.0}
+% % \author{\small Edit by:China\TeX{} \url{http://blog.sina.com.cn/wangzhaoli11}}
+% % \date{\today}
+% %=================================================================
+% %==================================================================
+% \begin{document}
+% % \maketitle
+% %\thispagestyle{empty}
+% %==================================================================
+
+% %\vspace*{\fill}
+% %====================摘=======要===================================
+% \input{Abstract}                                              %
+% \newpage                                                          %
+% %==================================================================
+
+
+% %====================生=成=目=录===================================
+% \tableofcontents                                                  %                                            %
+% \newpage                                                          %
+% %==================================================================
+% \input{body}
+
+% \end{document}
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%===========THE END OF PAPER============%%%%%%%%%%%%%%%%%%
+% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
