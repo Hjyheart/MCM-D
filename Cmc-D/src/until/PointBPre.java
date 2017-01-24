@@ -34,7 +34,7 @@ public class PointBPre extends Point {
     public void action(Boolean flag, Integer time){
         if (passenger == null && getWaitingList().size() != 0){
             passenger = getWaitingList().poll();
-            passenger.setDoing((int) Math.round(Math.random() * 5 + 12));
+            passenger.setDoing(getTime());
         }
 
         if (passenger != null){
@@ -52,15 +52,9 @@ public class PointBPre extends Point {
                     // to c
                     passenger.setStartC(time);
                     if (!passenger.getPre()) {
-                        if (Math.random() * 100 < 33) {
-                            next1.getCs().get(0).add(passenger);
-                        } else if (Math.random() * 100 > 67) {
-                            next1.getCs().get(1).add(passenger);
-                        } else {
-                            next1.getCs().get(2).add(passenger);
-                        }
+                        next1.getCs().get(gotoC(18)).add(passenger);
                     }else{
-                        next1.getCbs().get(0).add(passenger);
+                        next1.getCbs().get(gotoC(6)).add(passenger);
                     }
                 }
                 passenger = null;
@@ -84,6 +78,24 @@ public class PointBPre extends Point {
     public void exit() throws IOException {
         fileWriterPassing.close();
         fileWriterWaiting.close();
+    }
+
+    public Integer getTime(){
+        Integer num1 = (int) Math.round(Math.random() * 5 + 12);
+        Integer num2 = (int) Math.round(Math.random() * 5 + 34);
+
+        if (Math.random() > 0.1){
+//            return num1 * 4 / 5;
+            return num1;
+        }else {
+//            return num2 * 4 / 5;
+            return num2;
+        }
+    }
+
+    public Integer gotoC(int n){
+        Integer num = (int) (Math.random() * n);
+        return num;
     }
 
 }

@@ -52,15 +52,9 @@ public class PointB extends Point {
                     // to c
                     passenger.setStartC(time);
                     if (!passenger.getPre()) {
-                        if (Math.random() * 100 < 33) {
-                            next1.getCs().get(0).add(passenger);
-                        } else if (Math.random() * 100 > 67) {
-                            next1.getCs().get(1).add(passenger);
-                        } else {
-                            next1.getCs().get(2).add(passenger);
-                        }
+                        next1.getCs().get(gotoC(18)).add(passenger);
                     }else{
-                        next1.getCbs().get(0).add(passenger);
+                        next1.getCbs().get(gotoC(6)).add(passenger);
                     }
                 }
                 passenger = null;
@@ -91,10 +85,17 @@ public class PointB extends Point {
         Integer num2 = (int) Math.round(Math.random() * 5 + 44);
 
         if (Math.random() > 0.1){
+//            return num1 * 4 / 5;
             return num1;
         }else {
+//            return num2 * 4 / 5;
             return num2;
         }
+    }
+
+    public Integer gotoC(int n){
+        Integer num = (int) (Math.random() * n);
+        return num;
     }
 
 }

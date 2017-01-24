@@ -23,7 +23,6 @@ public class PassengerController {
         dl = new LinkedList<>();
         int count = 0;
         for (int i = 0; i < 75000; i++){
-            // TODO: 泊松流
             count += Math.round(-1.152 * Math.log(Math.random()));
             dl.add(count);
         }
@@ -55,7 +54,6 @@ public class PassengerController {
     }
 
     public Integer getTime(){
-        // TODO:随机摇一个值出来
         return 1;
     }
 

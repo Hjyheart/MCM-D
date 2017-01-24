@@ -166,7 +166,8 @@ public class Passenger {
     /* some method */
     public void writing() throws IOException {
         fileWriter.write(id + " " + arriveTime + " " + exitTime + " " + String.valueOf(endA - startA) + " " +
-                String.valueOf(endB - startB) + " " + String.valueOf(endC - startC) + " " + String.valueOf(endD - startD) + "\n");
+                String.valueOf(endB - startB) + " " + String.valueOf(endC - startC) + " " +
+                String.valueOf(endD - startD) + " " + String.valueOf(getPre()) + "\n");
         fileWriter.flush();
     }
 }

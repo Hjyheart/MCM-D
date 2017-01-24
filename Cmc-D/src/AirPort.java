@@ -58,23 +58,26 @@ public class AirPort {
         /* points */
         pointD = new PointD(3, pointDWaitingWriter, pointDPassingWriter);
         cArea = new CArea();
-        PointC c1 = new PointC(1);
-        PointC c2 = new PointC(2);
-        PointC c3 = new PointC(3);
-        PointCPre cb1 = new PointCPre(1);
-        cArea.add(c1);
-        cArea.add(c2);
-        cArea.add(c3);
-        cArea.add(cb1);
+        for (int i = 1; i <= 18; i++){
+            PointC temp = new PointC(i);
+            cArea.add(temp);
+        }
+
+        for (int i = 0; i <= 6; i++){
+            PointCPre temp = new PointCPre(i);
+            cArea.add(temp);
+        }
+
         bArea = new BArea();
-        PointB b1 = new PointB(1, cArea, pointD);
-        PointB b2 = new PointB(2, cArea, pointD);
-        PointB b3 = new PointB(3, cArea, pointD);
-        PointBPre bp1 = new PointBPre(1, cArea, pointD);
-        bArea.add(b1);
-        bArea.add(b2);
-        bArea.add(b3);
-        bArea.add(bp1);
+        for (int i = 1; i <= 18; i++){
+            PointB temp = new PointB(i, cArea, pointD);
+            bArea.add(temp);
+        }
+        for (int i = 0; i <= 6; i++){
+            PointBPre temp = new PointBPre(i, cArea, pointD);
+            bArea.add(temp);
+        }
+
         pointA = new PointA(0, bArea, pointAWaitingWriter, pointAPassingWriter);
 
         /* controller */
@@ -96,7 +99,7 @@ public class AirPort {
 
         init();
 
-        while(timeController.getTimeCounter() < 3600 * 24){
+        while(timeController.getTimeCounter() < 3600 * 24 * 4){
             ArrayList<Passenger> passengers = passengerController.getPassenger(timeController.getTimeCounter());
             if(passengers.size() != 0){
                 for (Passenger passenger : passengers){

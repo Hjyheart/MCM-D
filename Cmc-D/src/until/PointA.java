@@ -26,10 +26,10 @@ public class PointA extends Point {
     @Override
     public void action(Boolean flag, Integer time){
 
-        while(getWaitingList().size() != 0 && dealPassengers.size() < 8){
+        while(getWaitingList().size() != 0 && dealPassengers.size() < 11){
             Passenger passenger = getWaitingList().poll();
 
-            passenger.setDoing((int) (Math.round(Math.random() * 8) + 7));
+            passenger.setDoing(((int) ( (Math.round(Math.random() * 8) + 7))));
             dealPassengers.add(passenger);
         }
 
@@ -69,16 +69,10 @@ public class PointA extends Point {
                 passenger.setStartB(time);
                 if (passenger.getPre()){
                     // Pre
-                    next.getBsPre().get(0).add(passenger);
+                    next.getBsPre().get(gotoB(6)).add(passenger);
                 }else{
                     // regular
-                    if (Math.random() * 100 < 33){
-                        next.getBs().get(0).add(passenger);
-                    }else if (Math.random() * 100 > 67){
-                        next.getBs().get(1).add(passenger);
-                    }else{
-                        next.getBs().get(2).add(passenger);
-                    }
+                    next.getBs().get(gotoB(18)).add(passenger);
                 }
                 for (int i = 0; i < dealPassengers.size(); i++){
                     if (dealPassengers.get(i).equals(passenger)){
@@ -89,4 +83,10 @@ public class PointA extends Point {
             }
         }
     }
+
+    public Integer gotoB(int n){
+        Integer num = (int) (Math.random() * n);
+        return num;
+    }
+
 }
